@@ -57,6 +57,50 @@ ln -s ~/pm-claude-skills/skills/* ~/.claude/skills/
 
 ---
 
+## 🤖 Building Blocks for Agent Templates
+
+On May 5, 2026, Anthropic [released their first agent templates](https://www.anthropic.com/news/finance-agents) — pre-packaged Claude agents that combine **skills, connectors, and subagents** into ready-to-run workflows for financial services.
+
+This library is the largest open-source collection of professional skills available — covering 15 professions beyond financial services. **The 106 skills here are the building blocks for agent templates outside of finance.**
+
+### What is an agent template?
+
+An agent template packages three things into one runnable workflow:
+
+| Component | What it is | Example from this library |
+|---|---|---|
+| **Skills** | Markdown files that teach Claude how to produce structured professional outputs | `sprint-planning`, `contract-review`, `investor-update` |
+| **Connectors** | Governed access to your team's data sources | Linear, Jira, Slack, Google Drive, Notion |
+| **Subagents** | Focused Claude models for sub-tasks within the larger workflow | Capacity analyst, risk scorer, comparables selector |
+
+A skill alone gives Claude a structured output format. An agent template gives Claude a complete workflow — pulling data, running specialised analysis, producing the output, and routing it where it needs to go.
+
+### How to use this library to build your own agent template
+
+Pick a recurring workflow on your team. Identify which existing skills cover the structured outputs that workflow needs. Add the connectors that let Claude reach the data. Add subagents for the analytical sub-tasks. That's the template.
+
+Examples of agent templates this library supports:
+
+| Template | Skills used | Connectors needed | Subagents |
+|---|---|---|---|
+| **PM Sprint Agent** | sprint-planning, sprint-brief, retro, project-status-report | Linear or Jira, Slack | Capacity analyst, risk scorer |
+| **Legal Contract Review Agent** | contract-review, nda-analyser, compliance-checklist | Google Drive or SharePoint | Clause-by-clause risk scorer |
+| **PM Discovery Agent** | discovery-interview-guide, user-interview-synthesis, assumption-mapper | Granola or Otter, Notion | Theme synthesiser |
+| **Sales Pursuit Agent** | sales-battlecard, discovery-call-prep, proposal-writer, account-plan | Salesforce or HubSpot, Gong | Competitive intel analyst |
+| **HR Onboarding Agent** | onboarding-plan, job-description-writer, change-management-plan | Workday or BambooHR, Slack | First-week scheduler |
+| **Finance Board Pack Agent** | investor-update, board-deck-narrative, financial-model-narrative | NetSuite or Xero, Google Drive | KPI variance analyst |
+| **Marketing Launch Agent** | go-to-market, content-calendar, email-campaign, media-pitch | HubSpot, Notion | Channel strategist |
+
+### First template available now
+
+The first agent template built from this library — **PM Sprint Agent** — is available in the [`templates/pm-sprint-agent/`](./templates/pm-sprint-agent/) directory. It combines four skills, two connectors, and two subagents into a single workflow that handles end-to-end sprint planning.
+
+Documentation, working orchestration script, and example outputs are included in the template folder.
+
+More templates will follow. If you want to contribute one, see the [template contribution guide](./templates/CONTRIBUTING.md).
+
+---
+
 ## 🆕 What's New in v7.0.0 — Engineering Skills Expansion
 
 **6 new engineering skills added to `pm-engineering`:**

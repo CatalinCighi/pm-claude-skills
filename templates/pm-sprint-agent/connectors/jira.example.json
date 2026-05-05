@@ -1,0 +1,73 @@
+{
+  "connector_name": "jira",
+  "version": "1.0.0",
+  "description": "Jira connector for the PM Sprint Agent template. Provides governed access to issues, sprints, and boards.",
+  
+  "configuration": {
+    "instance_url": "https://your-domain.atlassian.net",
+    "project_key": "PROJ",
+    "board_id": 123,
+    "default_jql_filter": "status in (\"To Do\", \"Open\", \"Backlog\") AND sprint is EMPTY",
+    "include_subtasks": false,
+    "rate_limit_requests_per_minute": 100
+  },
+  
+  "credentials": {
+    "_comment": "Jira uses email + API token for authentication. Generate an API token at https://id.atlassian.com/manage-profile/security/api-tokens",
+    "auth_email_env_var": "JIRA_EMAIL",
+    "api_token_env_var": "JIRA_API_TOKEN",
+    "auth_email_placeholder": "your-email@yourcompany.com",
+    "api_token_placeholder": "ATATT3xFfGF0..."
+  },
+  
+  "available_operations": [
+    {
+      "name": "search_issues",
+      "description": "Search for issues using JQL (Jira Query Language)",
+      "default_jql": "project = PROJ AND status in (\"To Do\", \"Open\", \"Backlog\") AND sprint is EMPTY ORDER BY priority DESC, created DESC",
+      "max_results": 200
+    },
+    {
+      "name": "get_issue_details",
+      "description": "Fetch detailed information about a specific issue",
+      "required_input": "issue_key",
+      "fields": ["summary", "description", "status", "priority", "assignee", "story_points", "labels", "components", "issuelinks"]
+    },
+    {
+      "name": "get_sprint_velocity",
+      "description": "Calculate average story points completed per sprint over the last N sprints",
+      "default_lookback": 3
+    },
+    {
+      "name": "list_sprints",
+      "description": "Get past, current, and upcoming sprints for the configured board",
+      "filters": ["state"]
+    },
+    {
+      "name": "get_team_members",
+      "description": "Get list of team members with their roles",
+      "default_role_filter": "developer"
+    }
+  ],
+  
+  "permissions_required": [
+    "Browse Projects",
+    "View Issues",
+    "View Sprints",
+    "View Project Roles"
+  ],
+  
+  "_setup_instructions": [
+    "1. Generate a Jira API token at https://id.atlassian.com/manage-profile/security/api-tokens",
+    "2. Set environment variables: export JIRA_EMAIL='you@company.com' && export JIRA_API_TOKEN='ATATT3xFfGF0...'",
+    "3. Find your project key (visible in the URL when viewing a project, e.g., 'PROJ' from 'jira.com/browse/PROJ-123')",
+    "4. Find your board ID: navigate to your board, look at the URL ('boards/123' = board ID 123)",
+    "5. Update instance_url, project_key, and board_id in this file",
+    "6. Save this file as 'jira.json' (without the .example)",
+    "7. Test the connection: bash orchestrate.sh --dry-run --sprint-goal 'test'"
+  ],
+  
+  "_jql_notes": "The default JQL filter pulls items in the project's backlog that aren't already assigned to a sprint. Customise the JQL if your team uses different statuses, custom fields, or specific epic filters.",
+  
+  "_rate_limit_notes": "Jira Cloud's REST API is rate limited per-account. Standard rate is 100 requests per minute. The agent uses approximately 10-15 API calls per sprint plan."
+}

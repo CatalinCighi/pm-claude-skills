@@ -1,0 +1,67 @@
+{
+  "connector_name": "linear",
+  "version": "1.0.0",
+  "description": "Linear connector for the PM Sprint Agent template. Provides governed access to issues, projects, and cycles.",
+  
+  "configuration": {
+    "workspace_url": "https://linear.app/your-workspace-name",
+    "team_id": "TEAM_ID_HERE",
+    "default_project_filter": "active",
+    "default_state_filter": ["backlog", "ready"],
+    "include_archived": false,
+    "rate_limit_requests_per_minute": 60
+  },
+  
+  "credentials": {
+    "_comment": "Replace these with your actual Linear API credentials. Generate a personal API key at https://linear.app/settings/account/security",
+    "api_key_env_var": "LINEAR_API_KEY",
+    "api_key_placeholder": "lin_api_xxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  
+  "available_operations": [
+    {
+      "name": "list_open_issues",
+      "description": "Get all open issues in the team's backlog and ready states",
+      "filters": ["team_id", "state", "label", "priority", "assignee", "project"],
+      "max_results": 200
+    },
+    {
+      "name": "get_issue_details",
+      "description": "Fetch detailed information about a specific issue including comments, dependencies, and history",
+      "required_input": "issue_id"
+    },
+    {
+      "name": "get_team_velocity",
+      "description": "Calculate average story points completed per cycle over the last N cycles",
+      "default_lookback": 3
+    },
+    {
+      "name": "get_team_capacity_calendar",
+      "description": "Read team PTO and out-of-office calendar entries",
+      "lookback_days": 14
+    },
+    {
+      "name": "list_cycles",
+      "description": "Get past, current, and upcoming cycles for the team",
+      "filters": ["status"]
+    }
+  ],
+  
+  "permissions_required": [
+    "issues:read",
+    "teams:read",
+    "cycles:read",
+    "users:read"
+  ],
+  
+  "_setup_instructions": [
+    "1. Generate a Linear API key at https://linear.app/settings/account/security (workspace admin scope is sufficient)",
+    "2. Set the LINEAR_API_KEY environment variable: export LINEAR_API_KEY='lin_api_xxxxx...'",
+    "3. Find your team ID by running: curl -H 'Authorization: $LINEAR_API_KEY' https://api.linear.app/graphql -d '{\"query\": \"{ teams { nodes { id name } } }\"}'",
+    "4. Update workspace_url and team_id in this file",
+    "5. Save this file as 'linear.json' (without the .example)",
+    "6. Test the connection: bash orchestrate.sh --dry-run --sprint-goal 'test'"
+  ],
+  
+  "_rate_limit_notes": "Linear's API is rate limited to 60 requests per minute for personal API keys. The agent uses approximately 8-12 API calls per sprint plan, so rate limits are unlikely to be hit unless running multiple plans in parallel."
+}
