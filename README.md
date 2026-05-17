@@ -1,4 +1,4 @@
-# 🧠 Claude Skills Library — 114 Skills for Every Profession
+# 🧠 PM Claude Skills — 114 Skills for Every Profession
 
 [![Stars](https://img.shields.io/github/stars/mohitagw15856/pm-claude-skills?style=social)](https://github.com/mohitagw15856/pm-claude-skills/stargazers)
 [![Skills](https://img.shields.io/badge/skills-114-blue)](https://github.com/mohitagw15856/pm-claude-skills)
@@ -7,11 +7,12 @@
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 [![Sponsor](https://img.shields.io/badge/sponsor-❤️-ff69b4)](https://github.com/sponsors/mohitagw15856)
 
-> **114 Claude Skills + 4 agent templates across 16 professions. Save 8-10 hours per week.**
+> **PM stands for Professional, not just Product Management.**
+> 114 Claude Skills + 4 agent templates across 16 professions. Built by a PM, used by everyone.
 
-A community-built library of Claude Skills covering product management, engineering, customer success, marketing, data, design, Figma, leadership, legal, finance, HR, sales, operations, research, education, and more. Each skill is a structured SKILL.md file that teaches Claude how to produce professional-grade outputs for your specific workflows.
+A community-built library of Claude Skills for professionals across every field — product management, engineering, customer success, marketing, design, legal, finance, HR, sales, operations, research, and more. Each skill is a structured SKILL.md file that teaches Claude how to produce professional-grade outputs for your specific workflows.
 
-**🆕 Latest release (v10.0.0):** The library now includes 114 skills + 4 working agent templates. Two star milestones unlocked at once — 250 stars brought 4 Customer Success skills, 500 stars brought 4 more Engineering skills.
+**🆕 Latest release (v10.0.0):** Two star milestones unlocked at once — 250 stars brought 4 Customer Success skills, 500 stars brought 4 more Engineering skills. 114 skills across 16 professions.
 ---
 
 ## 🚀 Quick Install (2 minutes)
@@ -583,7 +584,7 @@ Read the full breakdown: [Part 12 — I Built the Same Skills Library for ChatGP
 
 ## 🛠️ Custom Skills for Your Team
 
-The 106 skills in this library are built for general professional workflows. But the most powerful version of Claude Skills is one built specifically for *your* team — your templates, your terminology, your processes, your quality standards.
+The 114 skills in this library are built for general professional workflows. But the most powerful version of Claude Skills is one built specifically for *your* team — your templates, your terminology, your processes, your quality standards.
 
 **What custom skills look like in practice:**
 
